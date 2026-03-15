@@ -36,6 +36,7 @@ export default function ExpenseChart({ expenses }) {
         <Tooltip />
         <Legend />
       </PieChart>
+      
     </div>
   );
 }
