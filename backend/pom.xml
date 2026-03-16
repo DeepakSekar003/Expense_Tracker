@@ -51,10 +51,7 @@
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-
-            <configuration>
-                <mainClass>com.expensetracker.ExpenseTrackerApplication</mainClass>
-            </configuration>
+            <version>3.2.5</version>
 
             <executions>
                 <execution>
