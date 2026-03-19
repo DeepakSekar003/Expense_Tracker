@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://35.173.15.130")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/expenses")
 public class ExpenseController {
 
