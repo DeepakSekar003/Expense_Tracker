@@ -17,7 +17,7 @@ export default function Dashboard() {
 
   const fetchExpenses = async () => {
 
-    const res = await fetch("http://localhost:8080/api/expenses");
+    const res =await fetch("/api/expenses") ;
 
     const data = await res.json();
 

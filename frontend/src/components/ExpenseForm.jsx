@@ -38,7 +38,7 @@ export default function ExpenseForm({ editingExpense, setEditingExpense, refresh
 
       if (editingExpense) {
 
-        res = await fetch(`http://localhost:8080/api/expenses/${editingExpense.id}`, {
+        res = await fetch(`/api/expenses/${editingExpense.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -50,7 +50,7 @@ export default function ExpenseForm({ editingExpense, setEditingExpense, refresh
 
       } else {
 
-        res = await fetch("http://localhost:8080/api/expenses", {
+        res =await fetch("/api/expenses", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
