@@ -1,5 +1,4 @@
-const API_URL = "http://35.173.15.130:8080/api/expenses";
-
+const API_URL = "/api/expenses";
 export async function getExpenses() {
   const res = await fetch(API_URL, {
     method: "GET",
