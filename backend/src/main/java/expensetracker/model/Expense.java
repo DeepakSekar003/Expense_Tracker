@@ -3,6 +3,8 @@ package com.expensetracker.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Expense {
 
@@ -16,8 +18,9 @@ public class Expense {
 
  private LocalDate expenseDate;
 
- @ManyToOne
- private Category category;
+@ManyToOne
+@JsonIgnore
+private Category category;
 
  public Long getId() { return id; }
 

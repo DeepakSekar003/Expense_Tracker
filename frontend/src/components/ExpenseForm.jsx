@@ -26,55 +26,63 @@ export default function ExpenseForm({ editingExpense, setEditingExpense, refresh
 
   const addExpense = async () => {
 
-    const newExpense = {
-      amount: Number(amount),
-      description: description,
-      expenseDate: date
-    };
+  const newExpense = {
+    amount: Number(amount),
+    description: description,
+    expenseDate: date
+  };
 
-    try {
+  try {
 
-      let res;
+    let res;
 
-      if (editingExpense) {
+    if (editingExpense) {
 
-        res = await fetch(`/api/expenses/${editingExpense.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newExpense)
-        });
+      res = await fetch(`http://localhost:8080/api/expenses/${editingExpense.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newExpense)
+      });
 
-        setEditingExpense(null);
+      setEditingExpense(null);
 
-      } else {
+    } else {
 
-        res =await fetch("/api/expenses", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newExpense)
-        });
+      res = await fetch("http://localhost:8080/api/expenses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newExpense)
+      });
 
-      }
-
-      const data = await res.json();
-
-      console.log("Saved Expense:", data);
-
-      setAmount("");
-      setDescription("");
-      setDate("");
-
-      if (refreshExpenses) refreshExpenses();
-
-    } catch (error) {
-      console.error("Error:", error);
     }
 
+    // ✅ CHECK RESPONSE
+    if (!res.ok) {
+      throw new Error("API failed");
+    }
+
+    // ✅ WAIT FOR BACKEND
+    await res.json();
+
+    // ✅ CLEAR FORM
+    setAmount("");
+    setDescription("");
+    setDate("");
+
+    // ✅ REFRESH UI (IMPORTANT)
+    if (refreshExpenses) {
+      await refreshExpenses();
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
   }
+
+};
 
   return (
 

@@ -16,13 +16,18 @@ export default function Dashboard() {
   }, []);
 
   const fetchExpenses = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/api/expenses");
 
-    const res =await fetch("/api/expenses") ;
+    if (!res.ok) throw new Error("Fetch failed");
 
     const data = await res.json();
-
     setExpenses(data);
-  };
+
+  } catch (err) {
+    console.error("Error fetching expenses:", err);
+  }
+};
 
   const totalSpent = expenses.reduce(
     (sum, e) => sum + e.amount,

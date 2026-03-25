@@ -1,11 +1,24 @@
+import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import ExpenseForm from "../components/ExpenseForm";
 import ExpenseList from "../components/ExpenseList";
-import { useState } from "react";
 
 export default function Expenses() {
 
   const [editingExpense, setEditingExpense] = useState(null);
+  const [expenses, setExpenses] = useState([]);
+
+  // ✅ FETCH DATA
+  const fetchExpenses = async () => {
+    const res = await fetch("http://localhost:8080/api/expenses");
+    const data = await res.json();
+    setExpenses(data);
+  };
+
+  // ✅ LOAD ON PAGE
+  useEffect(() => {
+    fetchExpenses();
+  }, []);
 
   return (
 
@@ -22,16 +35,17 @@ export default function Expenses() {
         <ExpenseForm
           editingExpense={editingExpense}
           setEditingExpense={setEditingExpense}
-          refreshExpenses={() => window.location.reload()}
+          refreshExpenses={fetchExpenses}   // ✅ REAL FIX
         />
 
         <ExpenseList
+          expenses={expenses}              // ✅ PASS DATA
           setEditingExpense={setEditingExpense}
+          refreshExpenses={fetchExpenses} // (optional)
         />
 
       </div>
 
     </div>
-
   );
 }
