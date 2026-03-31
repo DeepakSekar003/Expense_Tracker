@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+
+  build:
+    commands:
+      - cd backend
+      - mvn clean package
+
+artifacts:
+  files:
+    - backend/target/*.jar
+    - appspec.yml
+    - scripts/**
