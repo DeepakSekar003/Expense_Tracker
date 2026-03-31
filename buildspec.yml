@@ -9,6 +9,7 @@ phases:
     commands:
       - cd backend
       - mvn clean package
+      - cd ..
 
 artifacts:
   files:
