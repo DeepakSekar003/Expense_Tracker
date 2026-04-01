@@ -2,11 +2,11 @@ version: 0.0
 os: linux
 
 files:
-  - source: backend/target/
-    destination: /home/ubuntu/app
+  - source: backend/target/expense-tracker-0.0.1-SNAPSHOT.jar
+    destination: /home/ec2-user/app
 
 hooks:
-  ApplicationStart:
+  AfterInstall:
     - location: scripts/start.sh
       timeout: 300
-      runas: ubuntu
+      runas: ec2-user
