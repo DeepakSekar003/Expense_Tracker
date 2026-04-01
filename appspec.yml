@@ -5,6 +5,12 @@ files:
   - source: backend/target/expense-tracker-0.0.1-SNAPSHOT.jar
     destination: /home/ec2-user/app
 
+permissions:
+  - object: scripts
+    pattern: "**"
+    owner: ec2-user
+    mode: 755
+
 hooks:
   AfterInstall:
     - location: scripts/start.sh
