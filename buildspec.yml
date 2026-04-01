@@ -10,14 +10,15 @@ phases:
       - echo "Building backend..."
       - cd backend
       - mvn clean package
+      - cd ..
 
   post_build:
     commands:
-      - echo "Running tests..."
-      - mvn test
+      - echo "Build completed"
 
 artifacts:
   files:
     - backend/target/*.jar
     - appspec.yml
-    - scripts/**
+    - scripts/**/*
+  discard-paths: yes
