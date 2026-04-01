@@ -2,8 +2,15 @@
 
 cd /home/ec2-user/app
 
+echo "Current files:"
+ls -l
+
 # kill old app
 pkill -f expense-tracker || true
 
-# start new app
-nohup java -jar expense-tracker-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+# find jar dynamically (BEST PRACTICE)
+JAR_FILE=$(ls *.jar)
+
+echo "Running $JAR_FILE"
+
+nohup java -jar $JAR_FILE > app.log 2>&1 &
