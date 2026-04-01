@@ -4,10 +4,11 @@ os: linux
 files:
   - source: backend/target/expense-tracker-0.0.1-SNAPSHOT.jar
     destination: /home/ec2-user/app
+    overwrite: yes
 
 permissions:
-  - object: scripts
-    pattern: "**"
+  - object: /home/ec2-user/app
+    pattern: "*.jar"
     owner: ec2-user
     mode: 755
 
