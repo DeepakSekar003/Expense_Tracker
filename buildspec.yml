@@ -12,13 +12,8 @@ phases:
       - mvn clean package
       - cd ..
 
-  post_build:
-    commands:
-      - echo "Build completed"
-
 artifacts:
   files:
     - backend/target/*.jar
     - appspec.yml
     - scripts/**/*
-  discard-paths: yes
