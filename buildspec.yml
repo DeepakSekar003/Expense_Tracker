@@ -7,9 +7,13 @@ phases:
 
   build:
     commands:
-      - cd backend
-      - mvn clean package
-      - cd ..
+      - echo "Building backend..."
+      - cd backend && mvn clean package
+
+  post_build:
+    commands:
+      - echo "Running tests..."
+      - cd backend && mvn test
 
 artifacts:
   files:
