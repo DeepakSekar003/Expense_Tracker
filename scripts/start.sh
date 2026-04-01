@@ -1,4 +1,9 @@
 #!/bin/bash
-pkill -f java
-cd /home/ubuntu/Expense_Tracker/backend
-nohup java -jar target/*.jar > app.log 2>&1 &
+
+cd /home/ec2-user/app
+
+# kill old app
+pkill -f expense-tracker || true
+
+# start new app
+nohup java -jar expense-tracker-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
