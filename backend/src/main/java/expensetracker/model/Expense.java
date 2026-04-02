@@ -19,6 +19,7 @@ public class Expense {
  private LocalDate expenseDate;
 
 @ManyToOne
+@JoinColumn(name = "category_id") 
 @JsonIgnore
 private Category category;
 
