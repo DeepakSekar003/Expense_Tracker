@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
-    destination: /home/ubuntu/app
+  - source: /backend/target/
+    destination: /home/ubuntu/backend
 
 hooks:
   AfterInstall:

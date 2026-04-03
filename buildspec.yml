@@ -4,16 +4,24 @@ phases:
   install:
     runtime-versions:
       java: corretto17
+      nodejs: 18
 
   build:
     commands:
       - echo "Building backend..."
       - cd backend
-      - mvn clean package
+      - mvn clean package -DskipTests
+      - cd ..
+
+      - echo "Building frontend..."
+      - cd frontend
+      - npm install
+      - npm run build
       - cd ..
 
 artifacts:
   files:
     - backend/target/*.jar
+    - frontend/build/**/*
     - appspec.yml
     - scripts/**/*
