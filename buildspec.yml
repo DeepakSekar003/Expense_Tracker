@@ -6,12 +6,9 @@ phases:
       - echo "Installing Node 20..."
       - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
       - apt-get install -y nodejs
+      - node -v
 
-      # 🔥 VERY IMPORTANT FIX
-      - export PATH=/usr/bin:$PATH
-      - hash -r
-
-      - node -v   # should show v20+
+      - chmod +x scripts/start.sh  
 
   build:
     commands:
@@ -28,7 +25,7 @@ phases:
 
 artifacts:
   files:
-    - backend/target/*.jar
+    - backend/**
     - frontend/build/**/*
     - appspec.yml
     - scripts/**/*
